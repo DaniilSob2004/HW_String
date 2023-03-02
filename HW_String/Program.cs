@@ -28,7 +28,7 @@ namespace HW_String
 
             #region  Подсчитывать количество слов, гласных и согласных букв в строке, введёной пользователем. Дополнительно выводить количество знаков пунктуации, цифр и др. символов
 
-            Console.Write("Введите любую строку: ");
+            /*Console.Write("Введите любую строку: ");
             string userStr = Console.ReadLine().Trim().ToLower();
 
             // для подсчёта слов удаляем лишние символы и пробелы
@@ -69,7 +69,7 @@ namespace HW_String
             Console.WriteLine($"Согласных - {nConsLetter}");
             Console.WriteLine($"Знаков пунктуации - {nPunctSymbol}");
             Console.WriteLine($"Цифр - {nDigit}");
-            Console.WriteLine($"Др. символов - {nAnotherSymbol}");
+            Console.WriteLine($"Др. символов - {nAnotherSymbol}");*/
 
             #endregion
 
@@ -88,6 +88,44 @@ namespace HW_String
             {
                 Console.WriteLine("Is`t anagram...");
             }*/
+
+            #endregion
+
+            #region  Все возможные перестоновки символов в слове
+
+            string word = "ACB";
+            List<string> shuffled = new List<string>();  // хранятся все вариации слова
+            char[] wordArray = word.ToCharArray();
+            char ch;
+            string temp;
+
+            for (int i = 0; i < word.Length; i++)
+            {
+                for (int j = 0; j < word.Length - 1; j++)
+                {
+                    // меняем местами символы в массиве
+                    ch = wordArray[j];
+                    wordArray[j] = wordArray[j + 1];
+                    wordArray[j + 1] = ch;
+
+                    // из символов создаём строку
+                    temp = "";
+                    foreach (char tempw in wordArray)
+                    {
+                        temp += tempw;
+                    }
+
+                    // проверка: если строка не содержится в массиве вариации слова, то добавляем
+                    if (!shuffled.Contains(temp))
+                    {
+                        shuffled.Add(temp.ToString());
+                    }
+                }
+            }
+            foreach (var i in shuffled)
+            {
+                Console.WriteLine(i);
+            }
 
             #endregion
         }
